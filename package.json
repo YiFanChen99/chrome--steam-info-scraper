@@ -8,7 +8,7 @@
     "bulma-fluent": "^0.3.20",
     "vue": "^2.6.11"
   },
-  "description": "vue-chrome-extension-boilerplate",
+  "description": "Steam info scraper",
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",

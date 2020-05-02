@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      msg: 'Welcome!'
+      msg: 'Welcome options!'
     }
   }
 }

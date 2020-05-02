@@ -5,10 +5,12 @@
 </template>
 
 <script>
+chrome.extension.getBackgroundPage().console.log('Popup loaded');
+
 export default {
   data() {
     return {
-      msg: 'Welcome!'
+      msg: 'Welcome Steam info!'
     }
   }
 }
