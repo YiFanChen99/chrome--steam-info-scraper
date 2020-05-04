@@ -2,24 +2,22 @@ import './index.styl'
 
 
 class ClipboardWriter {
-	static createCopyableElement(text) {
-		let div = document.createElement('div');
-		div.contentEditable = true;
-		div.innerHTML = text;
-		div.unselectable = "off";
-		return div;
-	}
+	static writeTexts (texts) {
+		const text = texts.join('\t');
 
-	static copyTextToClipboard(text) {
-		let div = this.createCopyableElement(text);
-		document.body.appendChild(div);
-		div.focus();
-
-		document.execCommand('SelectAll');
-		document.execCommand("Copy", false, null);
-
-		document.body.removeChild(div);
-	}
+		return new Promise(function(resolve, reject) {
+			var success = false;
+			function listener(e) {
+				e.clipboardData.setData("text/plain", text);
+				e.preventDefault();
+				success = true;
+			}
+			document.addEventListener("copy", listener);
+			document.execCommand("copy");
+			document.removeEventListener("copy", listener);
+			success ? resolve(): reject();
+		});
+	};
 }
 
 
@@ -87,4 +85,4 @@ console.log('Start to scrap steam info ...');
 let infos =  new Scraper().scrap();
 
 console.log('Scraped info:', infos);
-ClipboardWriter.copyTextToClipboard(infos.join('	'));
+ClipboardWriter.writeTexts(infos);
