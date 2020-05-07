@@ -71,7 +71,7 @@ class Scraper {
 		let scores = document.querySelectorAll('.nonresponsive_hidden.responsive_reviewdesc');
 		let score = scores[scores.length - 1]?.innerText;
 
-		var pattern = /.*?(\d+)%.*/;
+		var pattern = /.*?(\d+)%.*/s;
 		return score.replace(pattern, '$1');
 	}
 
