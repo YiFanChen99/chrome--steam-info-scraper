@@ -56,7 +56,10 @@ class Scraper {
 	}
 
 	_scrapBestOff() {
-		return '-';  // TODO
+		let bestOff = document.body.querySelector('.steamdb_prices a').innerText;
+
+		var pattern = /.*at.-(\d+)%.*/;
+		return bestOff.replace(pattern, '$1');
 	}
 
 	_scrapPublicDate() {
@@ -80,9 +83,12 @@ class Scraper {
 	}
 }
 
+let timeToWait = 2000;
+console.log(`Wait ${timeToWait/1000} second(s) for steamdb loading (for best off)`);
+setTimeout(() => {
+  console.log('Start to scrap steam info ...');
+  let infos = new Scraper().scrap();
 
-console.log('Start to scrap steam info ...');
-let infos =  new Scraper().scrap();
-
-console.log('Scraped info:', infos);
-ClipboardWriter.writeTexts(infos);
+  console.log('Scraped info:', infos);
+  ClipboardWriter.writeTexts(infos);
+}, timeToWait);
