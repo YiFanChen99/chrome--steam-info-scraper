@@ -2,7 +2,7 @@ import './index.styl'
 
 
 class ClipboardWriter {
-	static writeTexts (texts) {
+	static writeTexts(texts) {
 		const text = texts.join('\t');
 
 		return new Promise(function(resolve, reject) {
@@ -83,12 +83,35 @@ class Scraper {
 	}
 }
 
+
+class Logger {
+  static info() {
+    let args = Array.from(arguments);
+    args.splice(0, 0, '[SteamScraper]');
+    console.log.apply(console, args);
+  }
+
+  static error() {
+    let args = Array.from(arguments);
+    args.splice(0, 0, '[SteamScraper]');
+    console.error.apply(console, args);
+  }
+}
+
+
 let timeToWait = 2000;
-console.log(`Wait ${timeToWait/1000} second(s) for steamdb loading (for best off)`);
+Logger.info(`Wait ${timeToWait/1000} second(s) for steamdb loading (for best off)`);
 setTimeout(() => {
-  console.log('Start to scrap steam info ...');
+  Logger.info('Start to scrap steam info ...');
   let infos = new Scraper().scrap();
 
-  console.log('Scraped info:', infos);
-  ClipboardWriter.writeTexts(infos);
+  Logger.info('Scraped info:', infos);
+
+  ClipboardWriter.writeTexts(infos)
+  .then(() => {
+    Logger.info('Clipboard written.');
+  })
+  .catch(() => {
+    Logger.error('Failed to write to the clipboard, args:', arguments);
+  });
 }, timeToWait);
