@@ -56,7 +56,7 @@ class Scraper {
 	}
 
 	_scrapBestOff() {
-		let bestOff = document.body.querySelector('.steamdb_prices a').innerText;
+		let bestOff = document.body.querySelector('.steamdb_prices a')?.innerText;
 
 		var pattern = /.*at.-(\d+)%.*/;
 		return bestOff.replace(pattern, '$1');
