@@ -99,7 +99,7 @@ class Logger {
 }
 
 
-let timeToWait = 2000;
+let timeToWait = 3000;
 Logger.info(`Wait ${timeToWait/1000} second(s) for steamdb loading (for best off)`);
 setTimeout(() => {
   Logger.info('Start to scrap steam info ...');
