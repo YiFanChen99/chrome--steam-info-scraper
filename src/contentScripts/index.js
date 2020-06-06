@@ -43,7 +43,7 @@ class Scraper {
 		let title = document.querySelector('.apphub_AppName')?.innerText;
 
 		let url = document.querySelector('.blockbg>a:last-child')?.baseURI;
-		url = url.replace(/(.*?app\/\d+\/).*/, '$1');
+		url = url?.replace(/(.*?app\/\d+\/).*/, '$1');
 
 		return `=HYPERLINK("${url}","${title}")`;
 	}
@@ -52,21 +52,21 @@ class Scraper {
 		let price = document.querySelector('.game_purchase_action .discount_original_price,.game_purchase_price')?.innerText;
 
 		var pattern = /.*?(\d+).*/;
-		return price.replace(pattern, '$1');
+		return price?.replace(pattern, '$1');
 	}
 
 	_scrapBestOff() {
 		let bestOff = document.body.querySelector('.steamdb_prices a')?.innerText;
 
 		var pattern = /.*at.-(\d+)%.*/;
-		return bestOff.replace(pattern, '$1');
+		return bestOff?.replace(pattern, '$1');
 	}
 
 	_scrapPublicDate() {
 		let date = document.querySelector('.release_date .date')?.innerText;
 
 		var pattern = /(\d{4}).*?(\d{1,2}).*?(\d{1,2}).*/;
-		return date.replace(pattern, '$1/$2/$3');
+		return date?.replace(pattern, '$1/$2/$3');
 	}
 
 	_scrapScore() {
@@ -75,7 +75,7 @@ class Scraper {
 		let score = scores[scores.length - 1]?.innerText;
 
 		var pattern = /.*?(\d+)%.*/s;
-		return score.replace(pattern, '$1');
+		return score?.replace(pattern, '$1');
 	}
 
 	_scrapCurrentDate() {
