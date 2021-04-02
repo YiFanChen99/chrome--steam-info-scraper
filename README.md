@@ -1,5 +1,10 @@
 # Steam info scraper
 
+## Deprecated
+
+Ref. to [new project](https://github.com/YiFanChen99/tampermonkey--steam-info-scraper) on 
+Tampermonkey.
+
 ## Scripts
 
 ```json
